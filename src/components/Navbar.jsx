@@ -6,14 +6,30 @@ import {
   MDBBtn,
   MDBInputGroup,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getCartTotal } from "../features/cartSlice";
 
 export default function Navbar() {
+  const { totalQuantity } = useSelector((state) => state.allCart);
+
+  const dispatch = useDispatch();
+
+  dispatch(getCartTotal());
+
   return (
-    <MDBNavbar light bgColor="light">
+    <MDBNavbar className="bg-dark bg-gradient text-light">
       <MDBContainer fluid>
-        <MDBNavbarBrand>Navbar</MDBNavbarBrand>
-        <span>All Product</span>
-        <MDBBtn color="primary">Cart(0)</MDBBtn>
+        <MDBNavbarBrand className="text-light">Tasty Meals</MDBNavbarBrand>
+        <Link to="/">
+          <span className="text-light">All Products</span>
+        </Link>
+        <MDBBtn color="danger">
+          <Link to="/cart" style={{ color: "#fff" }}>
+            Cart {totalQuantity}
+          </Link>
+        </MDBBtn>
       </MDBContainer>
     </MDBNavbar>
   );

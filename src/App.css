@@ -1,0 +1,6 @@
+body {
+  background: linear-gradient(to right, rgb(236, 9, 9), rgb(111, 19, 134));
+}
+.img-fluid {
+  object-fit: cover;
+}
